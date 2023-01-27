@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from restaurant import views,router
+from rest_framework.authtoken import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant/', include('restaurant.urls')),
     path('restaurant/menu/',include('restaurant.urls')),
     path('restaurant/booking/', include(router.router.urls)),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('api-token-auth/', auth_views.obtain_auth_token),
 ]
+
